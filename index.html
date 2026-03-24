@@ -1,10 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Data Viz Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SF Crime Data Story — Before, During &amp; After COVID</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #fafafa;
+            color: #2a3f5f;
+            line-height: 1.7;
+        }
+
+        /* --- Header --- */
+        header {
+            background: linear-gradient(135deg, #1d3557, #457b9d);
+            color: #fff;
+            text-align: center;
+            padding: 3.5rem 1.5rem 2.5rem;
+        }
+        header h1 { font-size: 2.2rem; margin-bottom: 0.4rem; }
+        header p  { font-size: 1.05rem; opacity: 0.85; max-width: 650px; margin: 0 auto; }
+
+        /* --- Layout --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        /* --- Sections --- */
+        section { margin-bottom: 3rem; }
+        section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.6rem;
+            border-left: 4px solid #e63946;
+            padding-left: 0.75rem;
+        }
+        section p { max-width: 800px; margin-bottom: 1rem; }
+
+        /* --- Figures --- */
+        .viz-wrapper {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        .viz-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .viz-wrapper iframe {
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            color: #6c757d;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>This site will soon contain interactive data visualizations about crime in San Francisco.</p>
+
+<header>
+    <h1>San Francisco Crime: A COVID-Era Data Story</h1>
+    <p>Exploring how five major crime categories shifted across the city's police districts before, during, and after the pandemic (2003 – 2024).</p>
+</header>
+
+<div class="container">
+
+    <!-- 1 ── Yearly Trends (static chart) -->
+    <section id="trends">
+        <h2>1. Twenty Years of Crime at a Glance</h2>
+        <p>
+            The line chart below tracks yearly incident counts for Assault, Burglary,
+            Larceny/Theft, Robbery and Vehicle Theft from 2003 to 2024.
+            The shaded band marks the COVID-19 period (2020–2021), where some categories
+            dipped while others surged.
+        </p>
+        <div class="viz-wrapper">
+            <img src="images/yearly_crime_trends.png"
+                 alt="Yearly crime trends in San Francisco, 2003–2024">
+        </div>
+    </section>
+
+    <!-- 2 ── Burglary Heatmap (Folium) -->
+    <section id="heatmap">
+        <h2>2. Burglary Hotspots: Pre-COVID vs. During COVID</h2>
+        <p>
+            Toggle between the two layers on the map to compare where burglaries
+            concentrated before the pandemic (2017–2019, blue) versus during it
+            (2020–2021, red). Notice how hotspots shifted away from commercial
+            corridors and into residential areas.
+        </p>
+        <div class="viz-wrapper">
+            <iframe src="visualizations/burglary_heatmap.html"
+                    height="520"
+                    loading="lazy"
+                    title="Burglary heatmap comparison"></iframe>
+        </div>
+    </section>
+
+    <!-- 3 ── District Comparison (Plotly) -->
+    <section id="districts">
+        <h2>3. Crime Shift by District</h2>
+        <p>
+            The interactive bar chart compares average yearly incidents per district
+            across three periods: Pre-COVID (2017–19), COVID (2020–21), and
+            Post-COVID (2022–24). Click legend items to isolate individual crime
+            types.
+        </p>
+        <div class="viz-wrapper">
+            <iframe src="visualizations/district_comparison.html"
+                    height="580"
+                    loading="lazy"
+                    title="District crime comparison chart"></iframe>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    Data source: San Francisco Police Department incident reports (2003–2025).
+    Built for DTU 02806 Social Data Analysis &amp; Visualization.
+</footer>
+
 </body>
 </html>
