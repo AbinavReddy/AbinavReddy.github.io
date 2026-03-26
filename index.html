@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Pandemic Reshuffle: How COVID-19 Transformed San Francisco Crime</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <title>When the City Emptied, Crime Didn't Vanish: It Moved</title>
     <style>
         :root {
             --primary-dark: #1d3557;
@@ -22,287 +19,331 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--light-bg);
-            color: var(--text-dark);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #fafafa;
+            color: #2a3f5f;
             line-height: 1.8;
-            font-size: 17px;
         }
 
-        /* --- Header --- */
+        /* ── Header ── */
         header {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-mid));
             color: #fff;
             text-align: center;
-            padding: 4rem 1.5rem 3rem;
+            padding: 5rem 1.5rem 3.5rem;
         }
         header h1 {
-            font-family: 'Playfair Display', Georgia, serif;
             font-size: 2.6rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.5px;
+            max-width: 800px;
+            margin: 0 auto 0.8rem;
+            line-height: 1.25;
         }
         header .subtitle {
-            font-size: 1.15rem;
-            opacity: 0.9;
-            max-width: 680px;
+            font-size: 1.1rem;
+            opacity: 0.82;
+            max-width: 600px;
             margin: 0 auto;
-            font-weight: 400;
+            font-weight: 300;
         }
         header .byline {
             margin-top: 1.5rem;
-            font-size: 0.95rem;
-            opacity: 0.75;
+            font-size: 0.85rem;
+            opacity: 0.6;
         }
 
-        /* --- Layout --- */
+        /* ── Container ── */
         .container {
-            max-width: 900px;
+            max-width: 780px;
             margin: 0 auto;
-            padding: 2.5rem 1.5rem;
+            padding: 2.5rem 1.5rem 1rem;
         }
 
-        /* --- Sections --- */
-        section {
-            margin-bottom: 3.5rem;
-        }
-        section h2 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
-            border-left: 4px solid var(--accent);
-            padding-left: 0.9rem;
-        }
-        section p {
-            margin-bottom: 1.1rem;
-            text-align: justify;
-        }
-        section p.lead {
-            font-size: 1.1rem;
-            color: var(--text-dark);
+        /* ── Prose ── */
+        .container p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
         }
 
-        /* Emphasis & Links */
-        strong { color: var(--primary-dark); }
-        a { color: var(--primary-mid); text-decoration: none; border-bottom: 1px solid var(--primary-mid); }
-        a:hover { color: var(--accent); border-color: var(--accent); }
+        /* ── Section headings ── */
+        .container h2 {
+            font-size: 1.55rem;
+            margin: 2.5rem 0 0.8rem;
+            border-left: 4px solid #e63946;
+            padding-left: 0.75rem;
+            line-height: 1.3;
+        }
 
-        /* --- Figures --- */
+        /* ── Figures ── */
         figure {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+            max-width: 960px;
+            margin: 1.8rem auto 2.2rem;
+            padding: 0;
+        }
+        .viz-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
             border-radius: 8px;
-            margin: 1.5rem 0 2rem;
+            padding: 1rem;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
-        figure img {
+        .viz-card img {
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 4px;
         }
-        figure iframe {
+        .viz-card iframe {
             width: 100%;
             border: none;
+            border-radius: 4px;
+            display: block;
         }
         figcaption {
-            padding: 1rem 1.25rem;
-            background: #f1f3f5;
-            border-top: 1px solid var(--border);
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            line-height: 1.6;
+            font-size: 0.88rem;
+            color: #6c757d;
+            margin-top: 0.7rem;
+            padding: 0 0.25rem;
+            line-height: 1.55;
         }
-        figcaption strong {
-            color: var(--text-dark);
-            display: block;
-            margin-bottom: 0.3rem;
-        }
+        figcaption strong { color: #2a3f5f; }
 
-        /* --- Callout boxes --- */
-        .callout {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 1rem 1.25rem;
-            margin: 1.5rem 0;
+        /* ── Pull-quote ── */
+        .pull-quote {
+            border-left: 4px solid #2a9d8f;
+            margin: 2rem 0;
+            padding: 0.8rem 1.2rem;
+            font-style: italic;
+            color: #457b9d;
+            background: #f0f7fa;
             border-radius: 0 6px 6px 0;
-            font-size: 0.95rem;
-        }
-        .callout.critical {
-            background: #f8d7da;
-            border-left-color: var(--accent);
         }
 
-        /* --- References --- */
+        /* ── References ── */
         .references {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
             margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0e0e0;
         }
         .references h3 {
             font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            color: var(--primary-dark);
+            margin-bottom: 0.6rem;
         }
         .references ol {
-            margin-left: 1.25rem;
+            padding-left: 1.4rem;
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: #6c757d;
+            line-height: 1.7;
         }
-        .references li { margin-bottom: 0.5rem; }
+        .references a { color: #457b9d; }
 
-        /* --- Footer --- */
+        /* ── Footer ── */
         footer {
             text-align: center;
             padding: 2rem 1.5rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            background: var(--card-bg);
+            font-size: 0.82rem;
+            color: #6c757d;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 2rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .container { padding: 1.5rem 1rem; }
+            figure { margin: 1.2rem auto 1.6rem; }
         }
         footer a { border: none; }
     </style>
 </head>
 <body>
 
+<!-- ════════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════════ -->
 <header>
-    <h1>The Pandemic Reshuffle</h1>
-    <p class="subtitle">How COVID-19 transformed where and when crime happens in San Francisco</p>
-    <p class="byline">A data story based on two decades of SFPD incident reports (2003-2024)</p>
+    <h1>When the City Emptied, Crime Didn't Vanish: It&nbsp;Moved</h1>
+    <p class="subtitle">
+        How two decades of San Francisco police data reveal a pandemic that didn't reduce crime, but reshuffled who became a target and where.
+    </p>
+    <p class="byline">DTU 02806 &middot; Social Data Analysis &amp; Visualization &middot; Week 8 Data Story</p>
 </header>
+
 
 <div class="container">
 
-    <!-- Introduction -->
-    <section id="intro">
-        <h2>About This Data</h2>
-        <p class="lead">
-            This story draws on <strong>over 2.5 million incident reports</strong> filed by the San Francisco Police Department between 2003 and 2024. The dataset is publicly available through <a href="https://datasf.org/opendata/" target="_blank">DataSF</a>, the city's open data portal, and captures every crime reported to police — from shoplifting to assault, vehicle theft to burglary.
-        </p>
-        <p>
-            Each record includes a timestamp, crime category, police district, geographic coordinates, and resolution status. We focus on five high-volume crime types: <strong>Assault</strong>, <strong>Burglary</strong>, <strong>Larceny/Theft</strong>, <strong>Robbery</strong>, and <strong>Vehicle Theft</strong>. Together, these represent a substantial portion of reported incidents and allow us to trace how the city's crime landscape shifted before, during, and after the COVID-19 pandemic.
-        </p>
-        <div class="callout critical">
-            <strong>A word of caution:</strong> Police data reflects <em>reported</em> crime, not all crime. Reporting rates vary by neighborhood, crime type, and community trust in law enforcement. A drop in reported incidents may mean fewer crimes occurred — or it may mean fewer people called police. Throughout this story, we distinguish between what the data shows and what it can prove.
-        </div>
-    </section>
+<!-- ════════════════════════════════════════════════
+     INTRO — what data, where from, why it matters
+     ════════════════════════════════════════════════ -->
+<p>
+    Every time someone in San Francisco calls 911, files a police report, or an officer responds to an incident, a record is created. The San Francisco Police Department publishes these records through the city's <a href="https://data.sfgov.org/" target="_blank" rel="noopener">open data portal</a>, making over <strong>2.5 million incident reports</strong> from 2003 to 2024 available for public analysis. We merged the legacy dataset (2003–2017) with the current reporting system (2018–present) to build a continuous 21-year picture of crime in the city.
+</p>
+<p>
+    From dozens of categories in the raw data, we focus on five that matter most to residents and are consistently recorded across the entire period: <strong>Assault</strong> (physical attacks), <strong>Burglary</strong> (unlawful entry into buildings), <strong>Larceny/Theft</strong> (stealing property without force), <strong>Robbery</strong> (theft using force or threat), and <strong>Vehicle Theft</strong>. Together, these categories capture the "street-level" crime that shapes how safe a neighborhood feels.
+</p>
+<p>
+    A critical caveat: this data shows what was <em>reported to police</em>, not all crime that occurred. If a neighborhood distrusts law enforcement, crimes go unreported. If police prioritize certain offenses, others get undercounted. As Richardson et al. (2019) demonstrate in their influential paper on "dirty data," crime statistics reflect enforcement patterns as much as criminal behavior. A 30% drop in drug arrests might mean less drug activity, or it might simply mean officers were reassigned elsewhere. We'll return to this tension at the end.
+</p>
 
-    <!-- Section 1: Yearly Trends -->
-    <section id="trends">
-        <h2>1. Twenty Years at a Glance</h2>
-        <p>
-            San Francisco's crime patterns were surprisingly stable for most of the 2010s. Larceny/Theft dominated the statistics, hovering around 50,000-60,000 incidents per year, while violent crimes like assault and robbery remained relatively flat. Then came 2020.
-        </p>
-        <p>
-            The pandemic didn't reduce crime across the board — it <strong>reshuffled the deck</strong>. As shelter-in-place orders emptied downtown offices and closed retail stores, larceny plummeted. Fewer people on the streets meant fewer pockets to pick and fewer storefronts to shoplift. But vehicle theft surged: with more cars parked unattended on residential streets, thieves found easier targets.
-        </p>
+<p>
+    With that caveat in mind, let's look at what the data reveals.
+</p>
 
-        <figure>
-            <img src="images/yearly_crime_trends.png" alt="Line chart showing yearly crime trends in San Francisco from 2003 to 2024">
-            <figcaption>
-                <strong>Figure 1: Yearly crime trends in San Francisco (2003-2024)</strong>
-                This line chart tracks five major crime categories over two decades. The shaded region marks the COVID-19 pandemic period (2020-2021). Notice how Larceny/Theft (the dominant category) drops sharply in 2020 while Vehicle Theft rises. By 2022, most categories begin returning toward pre-pandemic levels — but not all the way back.
-            </figcaption>
-        </figure>
 
-        <p>
-            The divergence is striking. While overall crime volume fell in 2020, this masked a fundamental change in <em>what kind</em> of crime was happening. Opportunistic property crimes tied to foot traffic declined; crimes targeting parked vehicles and unoccupied buildings increased. The pandemic didn't make San Francisco safer — it changed where vulnerability concentrated.
-        </p>
-    </section>
+<!-- ════════════════════════════════════════════════
+     FIGURE 1 — Static matplotlib chart
+     ════════════════════════════════════════════════ -->
+<h2>Twenty Years at a Glance</h2>
 
-    <!-- Section 2: Geographic Shift -->
-    <section id="geography">
-        <h2>2. Burglary Moves to the Neighborhoods</h2>
-        <p>
-            Perhaps no crime type illustrates the pandemic's geographic impact better than burglary. Before COVID-19, burglary hotspots clustered around San Francisco's commercial corridors: the South of Market (SoMa) district, the Tenderloin, and the Financial District. These areas had dense concentrations of businesses — and businesses are prime burglary targets.
-        </p>
-        <p>
-            But when storefronts shuttered and office buildings emptied, burglars adapted. The map below shows how burglary incidents migrated from commercial centers to residential neighborhoods. Toggle between the two layers to see the shift: pre-pandemic hotspots (2017-2019) versus pandemic-era concentrations (2020-2021).
-        </p>
+<p>
+    Before diving into the pandemic's effects, we need context. What did "normal" look like? The chart below traces annual incident counts from 2003 through 2024, covering two full decades that include the 2008 financial crisis, the tech boom of the 2010s, and the COVID-19 pandemic.
+</p>
 
-        <figure>
-            <iframe src="visualizations/burglary_heatmap.html" height="520" loading="lazy" title="Burglary heatmap comparison"></iframe>
-            <figcaption>
-                <strong>Figure 2: Burglary heatmap — Pre-COVID vs. During COVID</strong>
-                This interactive map compares burglary concentrations before the pandemic (blue layer, 2017-2019) and during it (red layer, 2020-2021). Use the layer control in the top-right corner to toggle between periods. Notice how pre-pandemic burglaries concentrate in SoMa and the Tenderloin, while pandemic-era burglaries spread into residential areas like the Richmond, Sunset, and Noe Valley.
-            </figcaption>
-        </figure>
+<figure>
+    <div class="viz-card">
+        <img src="images/yearly_crime_trends.png"
+             alt="Line chart showing yearly crime trends for five categories in San Francisco, 2003–2024.">
+    </div>
+    <figcaption>
+        <strong>Figure 1. Two decades of San Francisco crime, and one seismic disruption.</strong>
+        Annual incident counts for five major crime categories, 2003–2024. The shaded band marks the pandemic years (2020–2021). Three patterns demand attention: (1) Larceny/Theft, which dominates in sheer volume, crashes by nearly 50% in 2020 before partially rebounding; (2) Vehicle Theft moves in the opposite direction, climbing steadily from 2019 to reach a 20-year peak in 2023; (3) Robbery has declined continuously since 2013, a trend the pandemic accelerated but did not cause. The divergence between crime types tells us that COVID didn't simply suppress crime; it fundamentally altered which targets were available.
+    </figcaption>
+</figure>
 
-        <p>
-            This geographic redistribution aligns with what criminologists call <strong>routine activity theory</strong>: crime occurs when motivated offenders encounter suitable targets in the absence of capable guardians. The pandemic didn't change the number of motivated offenders in San Francisco — it changed where targets were available. Closed businesses meant fewer commercial targets; work-from-home policies meant homes were better guarded during the day. So burglaries shifted toward evening hours in residential areas where homes sat empty.
-        </p>
-        <p>
-            This matters for policy. A policing strategy optimized for pre-pandemic burglary patterns — focused on commercial districts during business hours — would have been poorly targeted in 2020-2021. The data suggests crime prevention needs to adapt as quickly as criminals do.
-        </p>
-    </section>
+<p>
+    The most striking feature isn't a single spike or dip. It's the <strong>divergence</strong>. Larceny/Theft and Vehicle Theft move in opposite directions starting in 2020, like two lines on a graph repelling each other. This isn't coincidence. Larceny depends on crowded spaces: tourists with cameras, commuters with laptops, shoppers with bags. When shelter-in-place orders emptied Union Square and the Financial District, the targets vanished overnight. Research on pandemic-era crime confirms this pattern: property crimes tied to commercial activity collapsed across major U.S. cities (Ashby, 2020).
+</p>
+<p>
+    Vehicle theft tells the inverse story. Cars that normally moved through the city sat parked for weeks. Streets that once had steady foot traffic became deserted, meaning fewer witnesses and more opportunity. By 2023, vehicle theft had reached levels not seen since the early 2000s, and unlike larceny, it hasn't come back down.
+</p>
 
-    <!-- Section 3: District Breakdown -->
-    <section id="districts">
-        <h2>3. Winners, Losers, and the Recovery</h2>
-        <p>
-            Not all neighborhoods experienced the pandemic equally. Some districts saw dramatic drops in reported crime; others saw increases. The interactive chart below breaks down average yearly incidents by police district across three periods: <strong>Pre-COVID</strong> (2017-2019), <strong>COVID</strong> (2020-2021), and <strong>Post-COVID</strong> (2022-2024).
-        </p>
-
-        <figure>
-            <iframe src="visualizations/district_comparison.html" height="580" loading="lazy" title="District crime comparison chart"></iframe>
-            <figcaption>
-                <strong>Figure 3: Crime by district and period — before, during, and after COVID</strong>
-                This grouped bar chart shows average yearly incidents per police district, split by crime type and time period. Click legend items to isolate specific crime categories. The Southern district (covering SoMa and the Financial District) shows the sharpest COVID-era decline, reflecting the exodus of downtown workers. Meanwhile, vehicle theft rises across nearly all districts.
-            </figcaption>
-        </figure>
-
-        <p>
-            The <strong>Southern</strong> and <strong>Central</strong> districts — covering downtown, SoMa, and North Beach — experienced the largest drops. These areas depend on commuters, tourists, and shoppers. When those populations vanished, so did the crimes they attract. By contrast, the <strong>Ingleside</strong> and <strong>Taraval</strong> districts, residential neighborhoods in the city's south and west, saw more modest changes — and in some categories, increases.
-        </p>
-        <p>
-            The post-pandemic period (2022-2024) shows partial recovery. Downtown crime is rebounding as workers return, but it hasn't reached pre-pandemic levels. Vehicle theft, meanwhile, remains elevated almost everywhere. This suggests that some pandemic-era behavioral changes — like increased car ownership and remote work — may be structural rather than temporary.
-        </p>
-    </section>
-
-    <!-- Critical Interpretation -->
-    <section id="interpretation">
-        <h2>What the Data Can't Tell Us</h2>
-        <p>
-            This analysis reveals patterns, but patterns aren't explanations. When we see that drug-related arrests dropped during the pandemic, we cannot conclude that drug use declined. It's equally plausible that enforcement priorities shifted, that officers were reassigned to pandemic response, or that citizens reported fewer incidents when streets were empty.
-        </p>
-        <p>
-            Similarly, the geographic shift in burglaries doesn't prove that "burglars moved to residential areas" as a conscious strategy. It may reflect changes in reporting behavior (homeowners stuck at home noticed more attempted break-ins), changes in enforcement (commercial districts received fewer patrols), or changes in what got classified as burglary versus other crimes.
-        </p>
-        <div class="callout">
-            <strong>The limits of incident data:</strong> Police data captures law enforcement activity as much as criminal activity. As Richardson et al. (2019) argue in their analysis of "dirty data" in predictive policing, crime statistics are shaped by department policies, officer discretion, and community reporting patterns — not just by how much crime actually occurs.
-        </div>
-        <p>
-            If someone used this data story to argue that "San Francisco got safer during the pandemic," they would be overreaching. What we can say is that <em>reported crime shifted</em> in ways consistent with major changes in how people lived and worked. The responsible interpretation is that COVID-19 disrupted crime patterns, not that it reduced crime in any fundamental sense.
-        </p>
-    </section>
-
-    <!-- References -->
-    <section id="references">
-        <div class="references">
-            <h3>References</h3>
-            <ol>
-                <li>San Francisco Police Department. "Police Department Incident Reports: 2003 to Present." <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank">DataSF</a>.</li>
-                <li>Richardson, R., Schultz, J., & Crawford, K. (2019). "Dirty Data, Bad Predictions: How Civil Rights Violations Impact Police Data, Predictive Policing Systems, and Justice." <em>New York University Law Review Online</em>, 94, 192-233.</li>
-                <li>Ashby, M.P.J. (2020). "Initial evidence on the relationship between the coronavirus pandemic and crime in the United States." <em>Crime Science</em>, 9(6). <a href="https://doi.org/10.1186/s40163-020-00117-6" target="_blank">DOI</a></li>
-                <li>Stickle, B., & Felson, M. (2020). "Crime Rates in a Pandemic: The Largest Criminological Experiment in History." <em>American Journal of Criminal Justice</em>, 45, 525-536.</li>
-                <li>San Francisco Chronicle. (2020). "SF car break-ins plummet during coronavirus shutdown — but other crimes are up." <a href="https://www.sfchronicle.com/bayarea/article/SF-car-break-ins-plummet-during-coronavirus-15168823.php" target="_blank">Link</a></li>
-                <li>KQED News. (2021). "Why Vehicle Thefts Are Spiking in San Francisco and the Bay Area." <a href="https://www.kqed.org/news/11874229/why-vehicle-thefts-are-spiking-in-san-francisco-and-the-bay-area" target="_blank">Link</a></li>
-            </ol>
-        </div>
-    </section>
-
+<div class="pull-quote">
+    COVID-19 didn't make San Francisco safer. It changed <em>who</em> was vulnerable and <em>where</em>. The total shifted less than the composition.
 </div>
 
+<p>
+    This divergence raises a natural question: if crime didn't disappear but moved, where exactly did it go?
+</p>
+
+
+<!-- ════════════════════════════════════════════════
+     FIGURE 2 — Folium map
+     ════════════════════════════════════════════════ -->
+<h2>Following the Burglaries Across the City</h2>
+
+<p>
+    Aggregate numbers tell us <em>how much</em> crime changed, but they hide <em>where</em> it moved. Burglary offers a revealing case study. The category saw a significant spike during COVID, but that spike wasn't uniform across the city. Use the layer controls on the map below to compare burglary hotspots before the pandemic (2017–2019) with the pandemic period (2020–2021).
+</p>
+
+<figure>
+    <div class="viz-card">
+        <iframe src="visualizations/burglary_heatmap.html"
+                height="520"
+                loading="lazy"
+                title="Interactive Folium heatmap comparing burglary hotspots before and during COVID"></iframe>
+    </div>
+    <figcaption>
+        <strong>Figure 2. Burglary didn't just increase; it migrated.</strong>
+        Interactive heatmap comparing burglary concentrations across San Francisco. Toggle between the <em>Pre-COVID</em> layer (2017–2019, cooler colors) and <em>During COVID</em> layer (2020–2021, warmer colors) using the control in the top-right corner. Before the pandemic, burglary clustered tightly around commercial corridors: SoMa, the Mission's Valencia Street, and Union Square. During COVID, the heat spreads westward and southward into residential neighborhoods like the Sunset, Richmond, and Ingleside, areas that rarely appeared as hotspots before. This geographic diffusion reflects a fundamental shift in opportunity: with businesses shuttered and secured, residential properties became the path of least resistance.
+    </figcaption>
+</figure>
+
+<p>
+    The pattern aligns with criminological theory. Routine activity theory holds that crime occurs when three elements converge: a motivated offender, a suitable target, and the absence of a capable guardian (Cohen &amp; Felson, 1979). The pandemic disrupted all three. Commercial districts lost their targets (closed businesses) but gained guardians (security, boards on windows). Residential areas gained targets (empty homes during the day as routines shifted) and lost guardians (neighbors working from home in their own units, not watching the street).
+</p>
+
+<p>
+    But San Francisco is not a monolith. The city's ten police districts experienced the pandemic very differently, and the recovery has been just as uneven.
+</p>
+
+
+<!-- ════════════════════════════════════════════════
+     FIGURE 3 — Interactive Plotly chart
+     ════════════════════════════════════════════════ -->
+<h2>A Tale of Ten Districts</h2>
+
+<p>
+    San Francisco's ten police districts are not interchangeable. The Tenderloin is 0.35 square miles of dense urban core, while Taraval covers quiet residential blocks stretching to the Pacific. The Southern district includes the convention center and tech headquarters; Richmond is fog-bound single-family homes. Aggregating them into a single "San Francisco" number obscures as much as it reveals. The interactive chart below disaggregates the story.
+</p>
+
+<figure>
+    <div class="viz-card">
+        <iframe src="visualizations/district_comparison.html"
+                height="580"
+                loading="lazy"
+                title="Interactive Plotly grouped bar chart comparing crime by district across three COVID periods"></iframe>
+    </div>
+    <figcaption>
+        <strong>Figure 3. The pandemic hit districts differently, and the recovery is uneven.</strong>
+        Average yearly incidents per police district, grouped by crime type and time period (Pre-COVID 2017–19, COVID 2020–21, Post-COVID 2022–24). Hover for exact values; click legend items to isolate categories. Key insights: <em>Southern</em> district (SoMa, downtown) saw Larceny/Theft crater during COVID then rebound sharply, tracking the return of office workers and tourists. <em>Tenderloin</em> shows a troubling pattern where Assault climbed through all three periods, a problem the pandemic worsened but did not create. <em>Bayview</em> and <em>Ingleside</em> experienced persistent Vehicle Theft increases that haven't reversed. The "recovery" is real in some districts and for some crimes, but not uniformly.
+    </figcaption>
+</figure>
+
+<p>
+    The <strong>Southern</strong> district illustrates the foot-traffic thesis most clearly. This district includes the Moscone Convention Center, the Salesforce Tower, and the shopping corridors around Market Street. When 200,000 daily commuters stopped arriving in March 2020, Larceny/Theft fell off a cliff. By 2023, as return-to-office mandates took hold, the numbers climbed back, though not quite to pre-pandemic levels, reflecting the hybrid work reality.
+</p>
+<p>
+    <strong>Tenderloin</strong> tells a darker story. Assault has risen steadily across all three periods: pre-COVID, during COVID, and post-COVID. This isn't a pandemic artifact; it's a persistent neighborhood crisis involving homelessness, mental health, and open-air drug markets. The data here should prompt humility. Not every pattern in the numbers can be explained by COVID, and not every trend will reverse when the pandemic "ends."
+</p>
+<p>
+    It's tempting to rank districts by incident counts and declare winners and losers. Resist the temptation. A high count in Southern reflects the millions of visitors passing through, not the safety of its residents. Comparing raw numbers across districts of different sizes, populations, and functions is comparing apples to orangutans.
+</p>
+
+<p>
+    So what can we actually conclude from all of this?
+</p>
+
+
+<!-- ════════════════════════════════════════════════
+     CONCLUSION
+     ════════════════════════════════════════════════ -->
+<h2>What the Data Can and Cannot Tell Us</h2>
+
+<p>
+    We've traced a clear narrative through 21 years of San Francisco police data: the pandemic didn't suppress crime so much as <em>redirect</em> it. Opportunities shifted from crowded commercial zones to quiet residential streets, from pedestrians with valuables to parked cars left unattended. The geographic center of gravity for burglary drifted westward. The composition of crime changed even when the totals didn't.
+</p>
+<p>
+    But we must be honest about what this data cannot prove. Police incident reports measure <em>recorded</em> crime, not <em>actual</em> crime. During 2020, SFPD staffing dropped, response times increased, and reporting priorities evolved. If fewer officers are on patrol, fewer incidents get documented, regardless of whether fewer crimes occur. Similarly, the post-2022 uptick in some categories coincides with a return to pre-pandemic policing levels. Disentangling "more crime" from "more recording of crime" is notoriously difficult.
+</p>
+<p>
+    Consider a practical example: if someone showed you Figure 1 and claimed "San Francisco got safer during COVID," would the data support that? Partially, since some categories did fall. But vehicle theft surged, burglary migrated to new victims, and the drop in larceny likely reflects the <em>absence of targets</em> rather than the absence of motivated offenders. The data supports a nuanced conclusion: the pandemic reshuffled risk, creating winners and losers depending on where you lived and what you owned.
+</p>
+<p>
+    If a policymaker used this analysis to argue for more patrols in residential neighborhoods, the data would offer <em>suggestive</em> support but not proof. We've shown that burglaries shifted to the Sunset and Richmond; we haven't shown that more police presence would have prevented them. Correlation is not causation, and historical data is not a controlled experiment.
+</p>
+<p>
+    What we <em>can</em> say is this: San Francisco's crime landscape in 2024 looks meaningfully different than it did in 2019. Vehicle theft remains elevated. Larceny has rebounded but redistributed. Assault in the Tenderloin continues a decade-long climb. The simple narratives, "crime is up" or "crime is down," miss the texture. The real story is always local, always categorical, and always more complicated than a headline.
+</p>
+
+
+<!-- ════════════════════════════════════════════════
+     REFERENCES
+     ════════════════════════════════════════════════ -->
+<div class="references">
+    <h3>References</h3>
+    <ol>
+        <li>San Francisco Police Department. <em>Police Department Incident Reports (2003–2024)</em>.
+            <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener">DataSF Open Data Portal</a>.</li>
+        <li>Richardson, R., Schultz, J. M., &amp; Crawford, K. (2019). Dirty Data, Bad Predictions:
+            How Civil Rights Violations Impact Police Data, Predictive Policing Systems, and Justice.
+            <em>N.Y.U. Law Review Online</em>, 94, 192–233.</li>
+        <li>Ashby, M. P. J. (2020). Initial evidence on the relationship between the coronavirus pandemic and crime in the United States.
+            <em>Crime Science</em>, 9(6).
+            <a href="https://doi.org/10.1186/s40163-020-00117-6" target="_blank" rel="noopener">DOI: 10.1186/s40163-020-00117-6</a>.</li>
+        <li>Cohen, L. E., &amp; Felson, M. (1979). Social Change and Crime Rate Trends: A Routine Activity Approach.
+            <em>American Sociological Review</em>, 44(4), 588–608.</li>
+        <li>Segel, E. &amp; Heer, J. (2010). Narrative Visualization: Telling Stories with Data.
+            <em>IEEE Trans. Visualization &amp; Computer Graphics</em>, 16(6), 1139–1148.</li>
+    </ol>
+</div>
+
+</div><!-- /.container -->
+
+
 <footer>
-    <p>
-        Data source: San Francisco Police Department incident reports (2003-2024) via <a href="https://datasf.org/opendata/">DataSF</a><br>
-        Built for DTU 02806 Social Data Analysis & Visualization
-    </p>
+    Data: SF Police Department incident reports (2003–2024) &middot;
+    Built for DTU 02806 Social Data Analysis &amp; Visualization &middot;
+    <a href="https://github.com/" style="color:#457b9d;">GitHub Pages</a>
 </footer>
 
 </body>
