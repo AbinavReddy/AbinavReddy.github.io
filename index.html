@@ -119,6 +119,20 @@
             border-radius: 0 6px 6px 0;
         }
 
+        .methods-note {
+            border: 1px solid #d8e3ea;
+            background: #f6fbff;
+            border-radius: 8px;
+            padding: 0.9rem 1rem;
+            margin: 1rem 0 1.4rem;
+            font-size: 0.95rem;
+        }
+        .methods-note strong { color: #1d3557; }
+        .methods-note ul {
+            margin: 0.45rem 0 0 1.1rem;
+            line-height: 1.55;
+        }
+
         /* ── References ── */
         .references {
             margin-top: 2rem;
@@ -136,6 +150,18 @@
             line-height: 1.7;
         }
         .references a { color: #457b9d; }
+        
+        /* Reference links in text */
+        .ref-link {
+            color: #457b9d;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .ref-link:hover {
+            color: #e63946;
+            text-decoration: underline;
+        }
 
         /* ── Footer ── */
         footer {
@@ -173,30 +199,39 @@
 <div class="container">
 
 <!-- ════════════════════════════════════════════════
-     INTRO — what data, where from, why it matters
+     INTRO: what data, where from, why it matters
      ════════════════════════════════════════════════ -->
 <p>
-    Every time someone in San Francisco calls 911, files a police report, or an officer responds to an incident, a record is created. The San Francisco Police Department publishes these records through the city's <a href="https://data.sfgov.org/" target="_blank" rel="noopener">open data portal</a>, making over <strong>2.5 million incident reports</strong> from 2003 to 2024 available for public analysis. We merged the legacy dataset (2003–2017) with the current reporting system (2018–present) to build a continuous 21-year picture of crime in the city.
+    Every time someone in San Francisco calls 911, files a police report, or an officer responds to an incident, a record is created. The San Francisco Police Department publishes these records through the city's <a href="https://data.sfgov.org/" target="_blank" rel="noopener">open data portal</a>, making over <strong>2.5 million incident reports</strong> from 2003 to 2024 available for public analysis <a href="#ref1" class="ref-link">[1]</a>. We merged the legacy dataset (2003–2017) with the current reporting system (2018–present) to build a continuous 21-year picture of crime in the city.
 </p>
 <p>
     From dozens of categories in the raw data, we focus on five that matter most to residents and are consistently recorded across the entire period: <strong>Assault</strong> (physical attacks), <strong>Burglary</strong> (unlawful entry into buildings), <strong>Larceny/Theft</strong> (stealing property without force), <strong>Robbery</strong> (theft using force or threat), and <strong>Vehicle Theft</strong>. Together, these categories capture the "street-level" crime that shapes how safe a neighborhood feels.
 </p>
 <p>
-    A critical caveat: this data shows what was <em>reported to police</em>, not all crime that occurred. If a neighborhood distrusts law enforcement, crimes go unreported. If police prioritize certain offenses, others get undercounted. As Richardson et al. (2019) demonstrate in their influential paper on "dirty data," crime statistics reflect enforcement patterns as much as criminal behavior. A 30% drop in drug arrests might mean less drug activity, or it might simply mean officers were reassigned elsewhere. We'll return to this tension at the end.
+    A critical caveat: this data shows what was <em>reported to police</em>, not all crime that occurred. If a neighborhood distrusts law enforcement, crimes go unreported. If police priorities change, counts can move without underlying behavior changing. As Richardson et al. (2019) show in their work on "dirty data," crime statistics reflect enforcement patterns as well as criminal behavior <a href="#ref2" class="ref-link">[2]</a>. We'll return to this tension at the end.
 </p>
 
 <p>
-    With that caveat in mind, let's look at what the data reveals.
+    <strong>Core claim:</strong> COVID-era San Francisco did not experience a uniform "crime up" or "crime down" shift. Risk was redistributed across crime types and neighborhoods.
 </p>
+
+<div class="methods-note">
+    <strong>Methods note (for transparency).</strong>
+    <ul>
+        <li>Only five consistently coded categories are analyzed (Assault, Burglary, Larceny/Theft, Robbery, Vehicle Theft).</li>
+        <li>Period comparisons use annualized counts (incidents per year in each period) to make 2-year and 3-year windows comparable.</li>
+        <li>District names are standardized before aggregation to avoid duplicate labels caused by mixed capitalization.</li>
+    </ul>
+</div>
 
 
 <!-- ════════════════════════════════════════════════
-     FIGURE 1 — Static matplotlib chart
+     FIGURE 1: Static matplotlib chart
      ════════════════════════════════════════════════ -->
 <h2>Twenty Years at a Glance</h2>
 
 <p>
-    Before diving into the pandemic's effects, we need context. What did "normal" look like? The chart below traces annual incident counts from 2003 through 2024, covering two full decades that include the 2008 financial crisis, the tech boom of the 2010s, and the COVID-19 pandemic.
+    Before the pandemic, what did "normal" look like? The chart below tracks annual incident counts from 2003 to 2024 across the financial crisis, the 2010s tech boom, and COVID-19.
 </p>
 
 <figure>
@@ -206,15 +241,72 @@
     </div>
     <figcaption>
         <strong>Figure 1. Two decades of San Francisco crime, and one seismic disruption.</strong>
-        Annual incident counts for five major crime categories, 2003–2024. The shaded band marks the pandemic years (2020–2021). Three patterns demand attention: (1) Larceny/Theft, which dominates in sheer volume, crashes by nearly 50% in 2020 before partially rebounding; (2) Vehicle Theft moves in the opposite direction, climbing steadily from 2019 to reach a 20-year peak in 2023; (3) Robbery has declined continuously since 2013, a trend the pandemic accelerated but did not cause. The divergence between crime types tells us that COVID didn't simply suppress crime; it fundamentally altered which targets were available.
+        Annual incident counts for five major crime categories, 2003-2024. The shaded band marks 2020-2021. Three patterns matter: (1) Larceny/Theft, the largest category, drops sharply in 2020 then partially rebounds; (2) Vehicle Theft rises in the opposite direction and peaks in 2023; (3) Robbery declines over the long run. <strong>Why it matters:</strong> Understanding this divergence challenges simplistic "crime up/down" narratives. Pandemic era interventions must be crime specific and context sensitive. Blanket policies that treat all crime equally will misallocate resources and fail to address the actual shifts in risk.
+    </figcaption>
+</figure>
+
+<figure style="margin: 2rem auto;">
+    <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem;">
+        <caption style="caption-side: top; font-weight: bold; margin-bottom: 0.7rem; text-align: left; font-size: 1rem; color: #2a3f5f;">
+            Table 1. Quantifying the Divergence: 2019 Baseline vs. 2020–21 Average
+        </caption>
+        <thead>
+            <tr style="background: #f0f7fa; border-bottom: 2px solid #457b9d;">
+                <th style="padding: 0.6rem; text-align: left;">Crime Type</th>
+                <th style="padding: 0.6rem; text-align: right;">2019 Count</th>
+                <th style="padding: 0.6rem; text-align: right;">2020–21 Avg.</th>
+                <th style="padding: 0.6rem; text-align: right;">Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 0.6rem;">Larceny/Theft</td>
+                <td style="padding: 0.6rem; text-align: right;">42,161</td>
+                <td style="padding: 0.6rem; text-align: right;">30,053</td>
+                <td style="padding: 0.6rem; text-align: right; color: #2a9d8f; font-weight: 600;">−28.7%</td>
+            </tr>
+            <tr style="background: #fafafa;">
+                <td style="padding: 0.6rem;">Vehicle Theft</td>
+                <td style="padding: 0.6rem; text-align: right;">4,842</td>
+                <td style="padding: 0.6rem; text-align: right;">6,853</td>
+                <td style="padding: 0.6rem; text-align: right; color: #e63946; font-weight: 600;">+41.5%</td>
+            </tr>
+            <tr>
+                <td style="padding: 0.6rem;">Burglary</td>
+                <td style="padding: 0.6rem; text-align: right;">4,369</td>
+                <td style="padding: 0.6rem; text-align: right;">6,669</td>
+                <td style="padding: 0.6rem; text-align: right; color: #e63946; font-weight: 600;">+52.6%</td>
+            </tr>
+            <tr style="background: #fafafa;">
+                <td style="padding: 0.6rem;">Assault</td>
+                <td style="padding: 0.6rem; text-align: right;">5,510</td>
+                <td style="padding: 0.6rem; text-align: right;">4,478</td>
+                <td style="padding: 0.6rem; text-align: right; color: #2a9d8f; font-weight: 600;">−18.7%</td>
+            </tr>
+            <tr>
+                <td style="padding: 0.6rem;">Robbery</td>
+                <td style="padding: 0.6rem; text-align: right;">2,123</td>
+                <td style="padding: 0.6rem; text-align: right;">1,548</td>
+                <td style="padding: 0.6rem; text-align: right; color: #2a9d8f; font-weight: 600;">−27.1%</td>
+            </tr>
+        </tbody>
+    </table>
+    <figcaption style="font-size: 0.88rem; color: #6c757d; margin-top: 0.5rem;">
+        Numbers illustrate the divergence shown in Figure 1. Larceny opportunity collapsed when foot traffic vanished; vehicle theft and burglary opportunity expanded as cars sat parked longer and neighborhoods emptied during business hours. The city didn't get uniformly safer or more dangerous; risk redistributed across crime types.
     </figcaption>
 </figure>
 
 <p>
-    The most striking feature isn't a single spike or dip. It's the <strong>divergence</strong>. Larceny/Theft and Vehicle Theft move in opposite directions starting in 2020, like two lines on a graph repelling each other. This isn't coincidence. Larceny depends on crowded spaces: tourists with cameras, commuters with laptops, shoppers with bags. When the Bay Area issued its shelter-in-place order in March 2020, Union Square, the Financial District, and Fisherman's Wharf emptied overnight. Research on pandemic-era crime confirms this pattern: property crimes tied to commercial activity collapsed across major U.S. cities (Ashby, 2020).
+    The key feature is <strong>divergence</strong>: Larceny/Theft and Vehicle Theft move in opposite directions from 2020 onward.
 </p>
 <p>
-    Vehicle theft tells the inverse story. Cars that normally moved through the city sat parked for weeks. Streets that once had steady foot traffic became deserted, meaning fewer witnesses and more opportunity. The surge was amplified nationally by a viral social media trend known as the <a href="https://www.bbc.com/news/world-asia-64645962" target="_blank" rel="noopener">"Kia Boys"</a>, which spread techniques for stealing certain car models. By 2023, vehicle theft had reached levels not seen since the early 2000s, and unlike larceny, it hasn't come back down.
+    <strong>Larceny/Theft drops sharply in 2020</strong> because its opportunity structure collapsed. Pickpocketing requires crowded BART stations; shoplifting requires open stores; package theft requires delivery volume. When foot traffic vanished, so did these crimes. The 2022-23 rebound is incomplete, likely reflecting permanent shifts to hybrid and remote work patterns that reduced commuter density <a href="#ref8" class="ref-link">[8]</a>. Examining Table 1, the 28.7% decline represents nearly 12,000 fewer annual incidents, a massive shift driven not by deterrence, but by the absence of targets. This is consistent with opportunity theory documented in pandemic-era studies <a href="#ref3" class="ref-link">[3]</a><a href="#ref9" class="ref-link">[9]</a>.
+</p>
+<p>
+    <strong>Vehicle theft surges in the opposite direction.</strong> Cars that usually circulated sat parked longer on residential streets, and lower foot traffic reduced informal surveillance ("eyes on the street"). This created extended windows of opportunity for thieves. The surge may also have been amplified by the national "Kia Boys" trend <a href="#ref6" class="ref-link">[6]</a>, where a TikTok-viral exploit made certain Kia and Hyundai models trivially easy to steal using only a USB cable. By 2023, vehicle theft reached levels not seen since the early 2000s. Table 1 shows a 41.5% increase, over 2,000 additional vehicles stolen per year compared to 2019.
+</p>
+<p>
+    <strong>Burglary tells a third story.</strong> While not as visually dramatic as the larceny drop or vehicle theft spike, burglary increased by 52.6% during COVID (Table 1). Routine activity theory <a href="#ref4" class="ref-link">[4]</a> suggests this reflects a shift: commercial buildings emptied out (reducing guardianship), while many residences remained occupied (increasing guardianship there). The net effect depends on where burglaries concentrate. If burglars targeted commercial properties more than residences pre-COVID, the composition shifted. We'll explore the spatial dimension in Figure 2.
 </p>
 
 <div class="pull-quote">
@@ -227,12 +319,12 @@
 
 
 <!-- ════════════════════════════════════════════════
-     FIGURE 2 — Folium map
+     FIGURE 2: Folium map
      ════════════════════════════════════════════════ -->
 <h2>Following the Burglaries Across the City</h2>
 
 <p>
-    Aggregate numbers tell us <em>how much</em> crime changed, but they hide <em>where</em> it moved. Burglary offers a revealing case study. The category saw a significant spike during COVID, but that spike wasn't uniform across the city. Use the layer controls on the map below to compare burglary hotspots before the pandemic (2017–2019) with the pandemic period (2020–2021).
+    Citywide totals show <em>how much</em> changed, but not <em>where</em>. Burglary is a useful case: the COVID-era increase was not spatially uniform. Use the layer control to compare hotspots in 2017–2019 vs 2020–2021.
 </p>
 
 <figure>
@@ -244,26 +336,26 @@
     </div>
     <figcaption>
         <strong>Figure 2. Burglary didn't just increase; it migrated.</strong>
-        Interactive heatmap comparing burglary concentrations across San Francisco. Toggle between the <em>Pre-COVID</em> layer (2017–2019, cooler colors) and <em>During COVID</em> layer (2020–2021, warmer colors) using the control in the top-right corner. Before the pandemic, burglary clustered tightly around commercial corridors: SoMa, the Mission's Valencia Street, and Union Square. During COVID, the heat spreads westward and southward into residential neighborhoods like the Sunset and Richmond (traditionally quiet, fog-belt neighborhoods of single-family homes) and the Ingleside. This geographic diffusion reflects a fundamental shift in opportunity: with businesses shuttered and secured, residential properties became the path of least resistance.
+        Interactive heatmap of burglary concentrations across San Francisco. Toggle <em>Pre-COVID</em> (2017-2019) and <em>During COVID</em> (2020-2021) in the top-right control. Both layers use the same sample size and heat parameters for comparability. What to notice: concentration shifts away from core commercial corridors toward western and southern residential districts. <strong>Why it matters:</strong> Spatial redistribution means some neighborhoods experienced increased vulnerability while others saw relief, raising equity concerns about how pandemic impacts were unevenly distributed across SF communities. Risk didn't disappear; it moved to different victims in different places.
     </figcaption>
 </figure>
 
 <p>
-    The pattern aligns with criminological theory. Routine activity theory holds that crime occurs when three elements converge: a motivated offender, a suitable target, and the absence of a capable guardian (Cohen &amp; Felson, 1979). The pandemic disrupted all three. Commercial districts lost their targets (closed businesses) but gained guardians (security, boards on windows). Residential areas gained targets (empty homes during the day as routines shifted) and lost guardians (neighbors working from home in their own units, not watching the street).
+    The pattern aligns with routine activity theory, where crime risk changes as targets and guardianship change over time <a href="#ref4" class="ref-link">[4]</a>. In this interpretation, commercial districts lost some target exposure during shutdowns, while residential areas may have become relatively more exposed. This is a theoretically grounded explanation, not direct causal proof.
 </p>
 
 <p>
-    But San Francisco is not a monolith. The city's ten police districts experienced the pandemic very differently, and the recovery has been just as uneven.
+    San Francisco is not a monolith. The ten police districts experienced the shock differently, and recovery has been uneven.
 </p>
 
 
 <!-- ════════════════════════════════════════════════
-     FIGURE 3 — Interactive Plotly chart
+     FIGURE 3: Interactive Plotly chart
      ════════════════════════════════════════════════ -->
 <h2>A Tale of Ten Districts</h2>
 
 <p>
-    San Francisco's ten police districts are not interchangeable. The Tenderloin is 0.35 square miles of dense urban core, while Taraval covers quiet residential blocks stretching to the Pacific. The Southern district includes the convention center and tech headquarters; Richmond is fog-bound single-family homes. Aggregating them into a single "San Francisco" number obscures as much as it reveals. The interactive chart below disaggregates the story.
+    San Francisco's ten police districts are structurally different. The Tenderloin is a dense urban core; Taraval is largely residential; Southern includes convention and office districts; Richmond is mostly low-rise housing. A single citywide number hides those differences. The chart below disaggregates the story.
 </p>
 
 <figure>
@@ -274,23 +366,35 @@
                 title="Interactive Plotly grouped bar chart comparing crime by district across three COVID periods"></iframe>
     </div>
     <figcaption>
-        <strong>Figure 3. The pandemic hit districts differently, and the recovery is uneven.</strong>
-        Average yearly incidents per police district, grouped by crime type and time period (Pre-COVID 2017–19, COVID 2020–21, Post-COVID 2022–24). Hover for exact values; click legend items to isolate categories. Key insights: <em>Southern</em> district (SoMa, downtown) saw Larceny/Theft crater during COVID then rebound sharply, tracking the return of office workers and tourists. <em>Tenderloin</em> shows a troubling pattern where Assault climbed through all three periods, a problem the pandemic worsened but did not create. <em>Bayview</em> and <em>Ingleside</em> experienced persistent Vehicle Theft increases that haven't reversed. The "recovery" is real in some districts and for some crimes, but not uniformly.
+        <strong>Figure 3. The pandemic hit districts differently, and recovery is uneven.</strong>
+        Average yearly incidents by district, crime type, and period (Pre-COVID 2017–19, COVID 2020–21, Post-COVID 2022–24). Hover for values and use the legend to isolate categories. Unlike the Week 6 exploratory Plotly work (which focused on hourly temporal patterns), this figure is built to test one claim: recovery is uneven by district and crime type. What to notice: <em>Southern</em> Larceny/Theft falls then rebounds, <em>Tenderloin</em> Assault stays persistently high, and <em>Bayview</em>/<em>Ingleside</em> Vehicle Theft remains elevated post-COVID. <strong>Why it matters:</strong> Uniform citywide interventions would misallocate resources. Southern needs larceny prevention tied to foot traffic recovery; Tenderloin needs sustained assault reduction programs addressing underlying social crises; Bayview/Ingleside need vehicle theft strategies focused on residential areas. One-size-fits-all policing fails when the landscape is this heterogeneous.
     </figcaption>
 </figure>
 
 <p>
-    The <strong>Southern</strong> district illustrates the foot-traffic thesis most clearly. This district includes the Moscone Convention Center, the Salesforce Tower, and the shopping corridors around Market Street. When daily commuters stopped arriving in March 2020, Larceny/Theft fell off a cliff. By 2023, as return-to-office policies took hold, the numbers climbed back, though not quite to pre-pandemic levels, reflecting the new hybrid work reality.
+    <strong>Southern</strong> best illustrates the foot-traffic mechanism. It includes Moscone, Salesforce Tower, and major Market Street corridors. When commuters stopped arriving in 2020, Larceny/Theft dropped sharply. As activity returned, counts rebounded, but not fully, consistent with hybrid work patterns.
 </p>
 <p>
-    <strong>Tenderloin</strong> tells a darker story. This small, dense neighborhood has long struggled with concentrated poverty, homelessness, and open-air drug markets. The <a href="https://www.theguardian.com/us-news/2022/apr/23/san-francisco-homelessness-street-team-fentanyl" target="_blank" rel="noopener">fentanyl crisis</a> hit the Tenderloin particularly hard in recent years. Assault has risen steadily across all three periods: pre-COVID, during COVID, and post-COVID. This isn't a pandemic artifact; it's a persistent neighborhood crisis that city policies have struggled to address for decades. The data here should prompt humility. Not every pattern in the numbers can be explained by COVID, and not every trend will reverse when the pandemic "ends."
+    <strong>Tenderloin</strong> shows a different pattern. The neighborhood has long faced concentrated poverty, homelessness, and open-air drug markets. Overdose death data from the SF Department of Public Health confirms the Tenderloin's disproportionate burden in the fentanyl crisis <a href="#ref10" class="ref-link">[10]</a>. Assault rises across all three periods, suggesting a persistent local problem that predates COVID. Not every district trend is a pandemic effect.
 </p>
 <p>
-    It's tempting to rank districts by incident counts and declare winners and losers. Resist the temptation. A high count in Southern reflects the millions of visitors passing through, not the safety of its residents. Comparing raw numbers across districts of different sizes, populations, and functions is comparing apples to orangutans.
+    Avoid ranking districts by raw counts alone. A high count in Southern reflects heavy daytime population and visitor flow, not necessarily resident risk. Districts differ in size, population, and land use.
 </p>
 
+<div class="policy-box" style="border-left: 4px solid #2a9d8f; background: #f0f7fa; padding: 1.2rem 1.5rem; margin: 2.5rem 0; border-radius: 0 6px 6px 0;">
+    <h3 style="margin-top: 0; color: #1d3557; font-size: 1.15rem;"> Implications for Public Safety Policy</h3>
+    <p style="margin-bottom: 0.8rem;">If these patterns persist, evidence-based interventions should be:</p>
+    <ul style="margin: 0 0 1rem 1.3rem; line-height: 1.65;">
+        <li><strong>Larceny prevention:</strong> Focus on transit hubs, commercial corridors, and areas with recovering foot traffic (Southern, Central). Consider Crime Prevention Through Environmental Design (CPTED) principles for public spaces.</li>
+        <li><strong>Vehicle theft reduction:</strong> Implement neighborhood-level interventions in residential areas (Bayview, Ingleside, Taraval). Improved street lighting, community-based surveillance programs, and targeted enforcement of known chop-shop locations.</li>
+        <li><strong>Tenderloin assault:</strong> The persistent elevation suggests systemic issues (housing instability, addiction services, mental health crisis response) that require multi-agency coordination beyond traditional policing.</li>
+        <li><strong>District-specific strategies are essential:</strong> Southern needs different interventions than Bayview, which needs different approaches than Tenderloin. Uniform citywide policies will misallocate resources.</li>
+    </ul>
+    <p style="margin-bottom: 0; font-style: italic; color: #457b9d; font-size: 0.95rem;"><strong>Critical caveat:</strong> These are data-informed hypotheses, not causal proof. The data shows <em>what</em> changed and <em>where</em>; it cannot prove <em>which</em> interventions would be effective. Policy implementation requires controlled evaluation and community input.</p>
+</div>
+
 <p>
-    So what can we actually conclude from all of this?
+    So what can we conclude?
 </p>
 
 
@@ -300,10 +404,10 @@
 <h2>What the Data Can and Cannot Tell Us</h2>
 
 <p>
-    We've traced a clear narrative through 21 years of San Francisco police data: the pandemic didn't suppress crime so much as <em>redirect</em> it. Opportunities shifted from crowded commercial zones to quiet residential streets, from pedestrians with valuables to parked cars left unattended. The geographic center of gravity for burglary drifted westward. The composition of crime changed even when the totals didn't.
+    Across 21 years of SFPD records, the clearest pattern is <em>redistribution</em>, not uniform decline: opportunity shifted from commercial zones toward residential contexts, and risk shifted from pedestrian theft toward parked vehicles.
 </p>
 <p>
-    But we must be honest about what this data cannot prove. Police incident reports measure <em>recorded</em> crime, not <em>actual</em> crime. During 2020, SFPD staffing dropped, response times increased, and reporting priorities evolved. If fewer officers are on patrol, fewer incidents get documented, regardless of whether fewer crimes occur. Similarly, the post-2022 uptick in some categories coincides with a return to pre-pandemic policing levels. Disentangling "more crime" from "more recording of crime" is notoriously difficult.
+    But we must be honest about what this data cannot prove. Police incident reports measure <em>recorded</em> crime, not <em>actual</em> crime. Reporting behavior, enforcement focus, and data-collection practices can all change over time <a href="#ref2" class="ref-link">[2]</a>. Disentangling "more crime" from "more recording of crime" is notoriously difficult.
 </p>
 <p>
     Consider a practical example: if someone showed you Figure 1 and claimed "San Francisco got safer during COVID," would the data support that? Partially, since some categories did fall. But vehicle theft surged, burglary migrated to new victims, and the drop in larceny likely reflects the <em>absence of targets</em> rather than the absence of motivated offenders. The data supports a nuanced conclusion: the pandemic reshuffled risk, creating winners and losers depending on where you lived and what you owned.
@@ -312,7 +416,7 @@
     If a policymaker used this analysis to argue for more patrols in residential neighborhoods, the data would offer <em>suggestive</em> support but not proof. We've shown that burglaries shifted to the Sunset and Richmond; we haven't shown that more police presence would have prevented them. Correlation is not causation, and historical data is not a controlled experiment.
 </p>
 <p>
-    What we <em>can</em> say is this: San Francisco's crime landscape in 2024 looks meaningfully different than it did in 2019. Vehicle theft remains elevated. Larceny has rebounded but redistributed. Assault in the Tenderloin continues a decade-long climb. The simple narratives, "crime is up" or "crime is down," miss the texture. The real story is always local, always categorical, and always more complicated than a headline.
+    What we <em>can</em> say is this: San Francisco's 2024 crime landscape differs meaningfully from 2019. Vehicle theft is still elevated, larceny has partly rebounded with a different spatial pattern, and Tenderloin assault remains high. "Crime up" vs "crime down" is too coarse; category and place matter.
 </p>
 
 
@@ -322,22 +426,32 @@
 <div class="references">
     <h3>References</h3>
     <ol>
-        <li>San Francisco Police Department. <em>Police Department Incident Reports (2003–2024)</em>.
+        <li id="ref1">San Francisco Police Department. <em>Police Department Incident Reports (2003–2024)</em>.
             <a href="https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783" target="_blank" rel="noopener">DataSF Open Data Portal</a>.</li>
-        <li>Richardson, R., Schultz, J. M., &amp; Crawford, K. (2019). Dirty Data, Bad Predictions:
+        <li id="ref2">Richardson, R., Schultz, J. M., &amp; Crawford, K. (2019). Dirty Data, Bad Predictions:
             How Civil Rights Violations Impact Police Data, Predictive Policing Systems, and Justice.
             <em>N.Y.U. Law Review Online</em>, 94, 192–233.</li>
-        <li>Ashby, M. P. J. (2020). Initial evidence on the relationship between the coronavirus pandemic and crime in the United States.
+        <li id="ref3">Ashby, M. P. J. (2020). Initial evidence on the relationship between the coronavirus pandemic and crime in the United States.
             <em>Crime Science</em>, 9(6).
             <a href="https://doi.org/10.1186/s40163-020-00117-6" target="_blank" rel="noopener">DOI: 10.1186/s40163-020-00117-6</a>.</li>
-        <li>Cohen, L. E., &amp; Felson, M. (1979). Social Change and Crime Rate Trends: A Routine Activity Approach.
+        <li id="ref4">Cohen, L. E., &amp; Felson, M. (1979). Social Change and Crime Rate Trends: A Routine Activity Approach.
             <em>American Sociological Review</em>, 44(4), 588–608.</li>
-        <li>Segel, E. &amp; Heer, J. (2010). Narrative Visualization: Telling Stories with Data.
+        <li id="ref5">Segel, E. &amp; Heer, J. (2010). Narrative Visualization: Telling Stories with Data.
             <em>IEEE Trans. Visualization &amp; Computer Graphics</em>, 16(6), 1139–1148.</li>
-        <li>BBC News (2023). Kia Boys: The US car theft trend linked to TikTok.
+        <li id="ref6">BBC News (2023). Kia Boys: The US car theft trend linked to TikTok.
             <a href="https://www.bbc.com/news/world-asia-64645962" target="_blank" rel="noopener">bbc.com</a>.</li>
-        <li>The Guardian (2022). San Francisco's Tenderloin: the search for solutions amid a fentanyl crisis.
+        <li id="ref7">The Guardian (2022). San Francisco's Tenderloin: the search for solutions amid a fentanyl crisis.
             <a href="https://www.theguardian.com/us-news/2022/apr/23/san-francisco-homelessness-street-team-fentanyl" target="_blank" rel="noopener">theguardian.com</a>.</li>
+        <li id="ref8">U.S. Bureau of Labor Statistics (2024). <em>Work from Home and Labor Force Flows</em>.
+            Economic News Release. Available at: <a href="https://www.bls.gov/news.release/flex2.htm" target="_blank" rel="noopener">bls.gov</a>.
+            [Used for hybrid work patterns context]</li>
+        <li id="ref9">Andresen, M. A., &amp; Hodgkinson, T. (2020). Somehow I always end up alone: COVID-19, social isolation and crime in Queensland, Australia.
+            <em>Crime Science</em>, 9, Article 25.
+            <a href="https://doi.org/10.1186/s40163-020-00135-4" target="_blank" rel="noopener">DOI: 10.1186/s40163-020-00135-4</a>.
+            [Empirical support for opportunity theory mechanisms]</li>
+        <li id="ref10">San Francisco Department of Public Health (2023). <em>Overdose Prevention and Drug Trends</em>.
+            Population Health Division. Available at: <a href="https://www.sfdph.org/dph/comupg/oprograms/CHEP/drugODdeath.asp" target="_blank" rel="noopener">sfdph.org</a>.
+            [Official data on substance use patterns by neighborhood]</li>
     </ol>
 </div>
 

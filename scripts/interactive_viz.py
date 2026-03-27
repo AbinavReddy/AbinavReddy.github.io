@@ -17,6 +17,12 @@ from config import (
 from data_loader import load_and_prepare
 
 
+EXPECTED_DISTRICTS = [
+    "Bayview", "Central", "Ingleside", "Mission", "Northern",
+    "Park", "Richmond", "Southern", "Taraval", "Tenderloin",
+]
+
+
 def _label_period(year):
     if year in PRE_COVID_YEARS:
         return "Pre-COVID (2017–19)"
@@ -57,8 +63,16 @@ def create_district_comparison():
     period_order = ["Pre-COVID (2017–19)", "COVID (2020–21)", "Post-COVID (2022–24)"]
     counts["Period"] = pd.Categorical(counts["Period"], categories=period_order, ordered=True)
 
-    # Remove "Out of SF" district
-    counts = counts[counts["Police_District"] != "Out of SF"]
+    # Keep only core SF districts and enforce stable district ordering.
+    counts = counts[counts["Police_District"].isin(EXPECTED_DISTRICTS)].copy()
+    counts["Police_District"] = pd.Categorical(
+        counts["Police_District"], categories=EXPECTED_DISTRICTS, ordered=True
+    )
+
+    observed = set(counts["Police_District"].dropna().astype(str).unique())
+    missing = [d for d in EXPECTED_DISTRICTS if d not in observed]
+    if missing:
+        print(f"  ! Warning: missing districts in filtered data: {', '.join(missing)}")
 
     fig = px.bar(
         counts,
@@ -74,24 +88,28 @@ def create_district_comparison():
             "Unified_Category": "Crime Type",
         },
         title="How Crime Shifted Across SF Districts: Before, During, and After COVID",
-        category_orders={"Period": period_order},
+        facet_col_spacing=0.055,
+        category_orders={
+            "Period": period_order,
+            "Police_District": EXPECTED_DISTRICTS,
+        },
     )
 
     fig.update_layout(
         font_family=FONT_FAMILY,
         plot_bgcolor=BG_COLOR,
         paper_bgcolor="white",
-        height=520,
-        width=1100,
-        margin=dict(t=80, b=80, l=60, r=40),
+        height=620,
+        margin=dict(t=90, b=145, l=75, r=35),
         legend=dict(
             title="Crime Type",
             orientation="h",
-            yanchor="bottom", y=-0.28,
+            yanchor="top", y=-0.18,
             xanchor="center", x=0.5,
         ),
     )
-    fig.update_xaxes(tickangle=-45)
+    fig.update_xaxes(tickangle=-35, automargin=True, title_standoff=8)
+    fig.update_yaxes(automargin=True, title_standoff=12, tickformat=",")
     fig.for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
 
     out_path = os.path.join(VIZ_DIR, "district_comparison.html")
