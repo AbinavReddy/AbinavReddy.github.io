@@ -53,6 +53,9 @@ def create_yearly_trends_chart():
     ax.legend(frameon=True, fontsize=9, loc="upper left", framealpha=0.9)
     ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f"{int(x):,}"))
     ax.set_xlim(2003, 2024)
+    ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
+    ax.xaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: str(int(x))))
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right", fontsize=8)
     ax.grid(axis="y", color=GRID_COLOR, linewidth=0.6)
     ax.spines[["top", "right"]].set_visible(False)
 

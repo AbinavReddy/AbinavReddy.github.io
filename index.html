@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>When the City Emptied, Crime Didn't Vanish: It Moved</title>
+    <meta name="description" content="Two decades of San Francisco crime data reveal how COVID-19 didn't reduce crime — it redistributed it. An interactive data story analyzing 2.5 million SFPD incident reports from 2003 to 2024.">
     <style>
         :root {
             --primary-dark: #1d3557;
@@ -98,6 +99,13 @@
             border: none;
             border-radius: 4px;
             display: block;
+            height: 520px;
+        }
+
+        @media (max-width: 600px) {
+            .viz-card iframe {
+                height: 360px;
+            }
         }
         figcaption {
             font-size: 0.88rem;
@@ -192,7 +200,7 @@
     <p class="subtitle">
         How two decades of San Francisco police data reveal a pandemic that didn't reduce crime, but reshuffled who became a target and where.
     </p>
-    <p class="byline">DTU 02806 &middot; Social Data Analysis &amp; Visualization &middot; Week 8 Data Story</p>
+    <p class="byline">DTU 02806 &middot; Social Data Analysis &amp; Visualization &middot; Data Story</p>
 </header>
 
 
@@ -330,7 +338,6 @@
 <figure>
     <div class="viz-card">
         <iframe src="visualizations/burglary_heatmap.html"
-                height="520"
                 loading="lazy"
                 title="Interactive Folium heatmap comparing burglary hotspots before and during COVID"></iframe>
     </div>
@@ -361,7 +368,7 @@
 <figure>
     <div class="viz-card">
         <iframe src="visualizations/district_comparison.html"
-                height="580"
+                style="height: 660px;"
                 loading="lazy"
                 title="Interactive Plotly grouped bar chart comparing crime by district across three COVID periods"></iframe>
     </div>
@@ -461,7 +468,7 @@
 <footer>
     Data: SF Police Department incident reports (2003–2024) &middot;
     Built for DTU 02806 Social Data Analysis &amp; Visualization &middot;
-    <a href="https://github.com/" style="color:#457b9d;">GitHub Pages</a>
+    <a href="https://github.com/AbinavReddy/AbinavReddy.github.io" style="color:#457b9d;">GitHub</a>
 </footer>
 
 </body>
